@@ -75,11 +75,16 @@ jobs:
             echo "All fetch attempts failed"; exit 1
           fi
 
-      - name: Build web app (ReleaseSafe)
+      # ReleaseSmall, and the class matters more than the size. Fizzy folds an optimize *safety
+      # class* into its plugin ABI fingerprint — Debug/ReleaseSafe are "safe", ReleaseFast and
+      # ReleaseSmall are "fast" — and the plugin store publishes "fast" builds only. Built
+      # ReleaseSafe, this app asks the registry for a shard nobody publishes under, so every
+      # plugin in a healthy store reads "No store build" and nothing can be installed.
+      - name: Build web app (ReleaseSmall)
         working-directory: fizzy
         env:
           ZIG_GLOBAL_CACHE_DIR: ${{ github.workspace }}/zig-global-cache
-        run: zig build web -Doptimize=ReleaseSafe
+        run: zig build web -Doptimize=ReleaseSmall
 
       - name: Assemble site
         run: |
