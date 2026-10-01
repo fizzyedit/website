@@ -51,19 +51,37 @@ fetch("https://api.github.com/repos/fizzyedit/fizzy/releases?per_page=50")
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(null); });
 })();
 
-// The embed runs the real app, so it waits to be asked: a click swaps the still for it.
-document.querySelectorAll(".embed[data-src]").forEach((figure) => {
-  const run = figure.querySelector(".embed-run");
-  const out = figure.querySelector(".embed-out");
-  if (!run) return;
-  run.addEventListener("click", () => {
+// Embeds run the real app, each with storage of its own (`?storage=` in its src), so none of
+// them touches the visitor's /app/. `data-start="visible"` starts one as it nears the viewport;
+// anything else — or a visitor saving data — waits for a click on its button.
+(function () {
+  const saveData = !!(navigator.connection && navigator.connection.saveData);
+  function start(figure) {
+    if (figure.classList.contains("running")) return;
     const frame = document.createElement("iframe");
     frame.src = figure.dataset.src;
     frame.title = "fizzy, running in this page";
     frame.allow = "clipboard-read; clipboard-write; fullscreen";
     figure.querySelector(".embed-frame").append(frame);
     figure.classList.add("running");
+    const out = figure.querySelector(".embed-out");
     if (out) out.hidden = false;
-    frame.focus();
+  }
+  const onView = "IntersectionObserver" in window && !saveData
+    ? new IntersectionObserver((entries) => entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        onView.unobserve(e.target);
+        start(e.target);
+      }), { rootMargin: "200px" })
+    : null;
+  document.querySelectorAll(".embed[data-src]").forEach((figure) => {
+    if (figure.dataset.start === "visible" && onView) {
+      onView.observe(figure);
+      return;
+    }
+    const run = figure.querySelector(".embed-run");
+    if (!run) return;
+    run.hidden = false;
+    run.addEventListener("click", () => start(figure));
   });
-});
+})();

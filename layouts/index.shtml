@@ -58,35 +58,10 @@
 				</div>
 			</div>
 
-			<figure class="embed" data-src="/app/?open=/site.zip">
+			<figure class="embed" data-src="/app/?storage=hero&amp;open=/site.zip" data-start="visible">
 				<div class="embed-frame">
-					<div class="embed-poster" aria-hidden="true">
-						<div class="mock-rail"><i></i><i></i><i></i></div>
-						<div class="mock-tree">
-							<b>FILES</b>
-							<i></i>
-							<i class="sel"></i>
-							<i></i>
-							<i></i>
-						</div>
-						<div class="mock-pane">
-							<span class="mock-tab">index.smd</span>
-							<i></i>
-							<i></i>
-							<i class="short"></i>
-							<i></i>
-							<i class="short"></i>
-						</div>
-						<div class="mock-pane">
-							<span class="mock-tab">preview</span>
-							<b class="mock-h"></b>
-							<i></i>
-							<i></i>
-							<i class="short"></i>
-						</div>
-					</div>
-					<button class="embed-run" type="button">Run fizzy here</button>
-					<a class="embed-out" href="/app/?open=/site.zip" target="_blank" hidden>Open in a full window ↗</a>
+					<button class="embed-run" type="button" hidden>Run fizzy here</button>
+					<a class="embed-out" href="/app/?storage=hero&amp;open=/site.zip" target="_blank" hidden>Open in a full window ↗</a>
 				</div>
 				<figcaption :html="$page.contentSection('embed')"></figcaption>
 			</figure>
