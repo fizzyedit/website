@@ -10,15 +10,15 @@
 ># [Draft]($block.attrs('note'))
 >Last updated [DATE]. Have it reviewed before it is published.
 
-**The short version:** fizzy has no accounts, no analytics [CONFIRM], and no fizzy server ever sees your files. Your work stays on your device, or in your own Google Drive if you connect it, and fizzy talks to Google directly from your device.
+**The short version:** fizzy has no accounts and no fizzy server ever sees your files. Your work stays on your device, or in your own Google Drive if you connect it, and fizzy talks to Google directly from your device.
 
 ## The desktop app
 
-Files you open are read and written where they are. Settings, layout and recent files are kept in fizzy's configuration folder on your computer. To check for updates and list plugins in the store, fizzy downloads release information from [UPDATE AND REGISTRY HOSTS — e.g. GitHub]. Those requests carry the usual network details, such as your IP address, and nothing about your work.
+Files you open are read and written where they are. Settings, layout and recent files are kept in fizzy's configuration folder on your computer. To check for updates and list plugins in the store, fizzy downloads release information from e.g. GitHub. Those requests carry the usual network details, such as your IP address, and nothing about your work.
 
 ## The web app
 
-fizzyed.it is served by [HOSTING PROVIDER], which may keep standard request logs (IP address, browser, time). Files you open are read inside your browser and are not uploaded. Settings are kept in your browser's local storage, and plugins you install in its cache; clearing this site's data removes both. If you let fizzy keep its data, the browser won't clear it on its own.
+fizzyed.it is served by cloudflare, which may keep standard request logs (IP address, browser, time). Files you open are read inside your browser and are not uploaded. Settings are kept in your browser's local storage, and plugins you install in its cache; clearing this site's data removes both. If you let fizzy keep its data, the browser won't clear it on its own.
 
 ## Google Drive
 

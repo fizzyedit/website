@@ -104,9 +104,6 @@ The SDK is versioned, and every plugin is checked against the app's shape when i
 - [x] The plugin SDK and the plugin store
 - [x] The web build, plugins included
 - [x] Liquid glass on macOS, frosted glass everywhere
-- [x] Pixel art, as the pixi plugin
-
-What comes next is planned in the open, in [GitHub issues](https://github.com/fizzyedit/fizzy/issues).
 
 []($section.id('this-site'))
 
