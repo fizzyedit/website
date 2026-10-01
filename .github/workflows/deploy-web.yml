@@ -1,13 +1,18 @@
-# Deploy fizzyed.it: this repo's static landing (docs/) + the fizzy browser app
-# built from a checkout of fizzyedit/fizzy (zig build web → site/app/).
+# Deploy fizzyed.it: this repo's static landing (docs/) and two builds of the fizzy browser app,
+# made by fizzyedit/fizzy's `web.yml` and left here as release assets:
 #
-# One-time repo setup: Settings → Pages → Build and deployment → Source: GitHub
-# Actions. Set the custom domain to fizzyed.it (docs/CNAME is copied into the
-# published artifact). The fizzy app source is public, so checking it out needs
-# no token.
+#   web-main     → /app/      the real app, built from fizzy's main
+#   web-preview  → /testapp/  a test build of a fizzy pull request (the latest one), with
+#                             browser storage of its own; absent until there has been one
 #
-# Rebuilds on: this repo's docs/ pushes, a repository_dispatch from
-# fizzyedit/fizzy (app source / new release), or a manual run.
+# Pages publishes the whole site at once, so every deploy lays out both, whichever one changed.
+# Reading this repo's own releases needs no token beyond the workflow's.
+#
+# One-time repo setup: Settings → Pages → Build and deployment → Source: GitHub Actions. Set the
+# custom domain to fizzyed.it (docs/CNAME is copied into the published artifact).
+#
+# Redeploys on: this repo's docs/ pushes, a repository_dispatch from fizzyedit/fizzy (a new
+# build, or a new release the site links), or a manual run.
 
 name: Deploy website
 
@@ -30,13 +35,6 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  ZIG_VERSION: "0.16.0"
-  # Branch or tag of fizzyedit/fizzy whose web app is published to /app/.
-  # Set to a release tag (e.g. v0.0.18) if you want /app/ to track stable
-  # releases instead of main.
-  FIZZY_REF: "main"
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,53 +42,25 @@ jobs:
       - name: Checkout website (docs/, CNAME)
         uses: actions/checkout@v4
 
-      - name: Checkout fizzy app source
-        uses: actions/checkout@v4
-        with:
-          repository: fizzyedit/fizzy
-          ref: ${{ env.FIZZY_REF }}
-          path: fizzy
-
-      - name: Pre-create Zig global cache tmp/
-        run: mkdir -p "$GITHUB_WORKSPACE/zig-global-cache/tmp"
-
-      - uses: mlugg/setup-zig@v2
-        with:
-          version: ${{ env.ZIG_VERSION }}
-          cache-key: ${{ hashFiles('fizzy/build.zig.zon') }}
-
-      - name: Fetch dependencies (with retries)
-        working-directory: fizzy
-        env:
-          ZIG_GLOBAL_CACHE_DIR: ${{ github.workspace }}/zig-global-cache
-        run: |
-          n=0
-          until [ "$n" -ge 5 ]; do
-            zig build --fetch && break
-            n=$((n+1))
-            echo "Fetch attempt $n failed, sleeping $((n*10))s before retry..."
-            sleep $((n*10))
-          done
-          if [ "$n" -ge 5 ]; then
-            echo "All fetch attempts failed"; exit 1
-          fi
-
-      # ReleaseSmall, and the class matters more than the size. Fizzy folds an optimize *safety
-      # class* into its plugin ABI fingerprint — Debug/ReleaseSafe are "safe", ReleaseFast and
-      # ReleaseSmall are "fast" — and the plugin store publishes "fast" builds only. Built
-      # ReleaseSafe, this app asks the registry for a shard nobody publishes under, so every
-      # plugin in a healthy store reads "No store build" and nothing can be installed.
-      - name: Build web app (ReleaseSmall)
-        working-directory: fizzy
-        env:
-          ZIG_GLOBAL_CACHE_DIR: ${{ github.workspace }}/zig-global-cache
-        run: zig build web -Doptimize=ReleaseSmall
-
       - name: Assemble site
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p site/app
+          mkdir -p site
           cp -R docs/. site/
-          cp -R fizzy/zig-out/web/. site/app/
+
+          gh release download web-main --repo "$GITHUB_REPOSITORY" --pattern web.zip --output main.zip
+          mkdir -p site/app
+          unzip -q main.zip -d site/app
+          cat site/app/build.json
+
+          if gh release download web-preview --repo "$GITHUB_REPOSITORY" --pattern web.zip --output preview.zip; then
+            mkdir -p site/testapp
+            unzip -q preview.zip -d site/testapp
+            cat site/testapp/build.json
+          else
+            echo "No test build yet: /testapp/ is left out."
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
