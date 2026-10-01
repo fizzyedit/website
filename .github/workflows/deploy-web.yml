@@ -1,5 +1,6 @@
-# Deploy fizzyed.it: this repo's static landing (docs/) and two builds of the fizzy browser app,
-# made by fizzyedit/fizzy's `web.yml` and left here as release assets:
+# Deploy fizzyed.it: this repo's Zine site (content/, layouts/, assets/ → `zine release`) and two
+# builds of the fizzy browser app, made by fizzyedit/fizzy's `web.yml` and left here as release
+# assets:
 #
 #   web-main     → /app/      the real app, built from fizzy's main
 #   web-preview  → /testapp/  a test build of a fizzy pull request (the latest one), with
@@ -9,9 +10,9 @@
 # Reading this repo's own releases needs no token beyond the workflow's.
 #
 # One-time repo setup: Settings → Pages → Build and deployment → Source: GitHub Actions. Set the
-# custom domain to fizzyed.it (docs/CNAME is copied into the published artifact).
+# custom domain to fizzyed.it (assets/CNAME is a static asset, so it lands in the published site).
 #
-# Redeploys on: this repo's docs/ pushes, a repository_dispatch from fizzyedit/fizzy (a new
+# Redeploys on: pushes here that change the site, a repository_dispatch from fizzyedit/fizzy (a new
 # build, or a new release the site links), or a manual run.
 
 name: Deploy website
@@ -20,7 +21,10 @@ on:
   push:
     branches: [main]
     paths:
-      - "docs/**"
+      - "content/**"
+      - "layouts/**"
+      - "assets/**"
+      - "zine.ziggy"
       - ".github/workflows/deploy-web.yml"
   repository_dispatch:
     types: [fizzy-updated]
@@ -39,15 +43,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout website (docs/, CNAME)
+      - name: Checkout website
         uses: actions/checkout@v4
+
+      # The version comes from `.zine_version` in zine.ziggy.
+      - name: Setup Zine
+        uses: kristoff-it/setup-zine@v2
+
+      - name: Build the site
+        run: zine release
 
       - name: Assemble site
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p site
-          cp -R docs/. site/
+          cp -R public/. site/
+          # The site's own content, for "Open this site in fizzy" (/app/?open=/site.zip).
+          (cd content && zip -qr ../site/site.zip . -x '.*')
 
           gh release download web-main --repo "$GITHUB_REPOSITORY" --pattern web.zip --output main.zip
           mkdir -p site/app

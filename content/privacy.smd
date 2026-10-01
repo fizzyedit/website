@@ -1,0 +1,41 @@
+---
+.title = "Privacy policy",
+.description = "What fizzy and fizzyed.it do with your data, including Google Drive.",
+.date = .date("2026-10-01T00:00:00"),
+.layout = "page.shtml",
+---
+
+# Privacy policy
+
+># [Draft]($block.attrs('note'))
+>Last updated [DATE]. Have it reviewed before it is published.
+
+**The short version:** fizzy has no accounts, no analytics [CONFIRM], and no fizzy server ever sees your files. Your work stays on your device, or in your own Google Drive if you connect it, and fizzy talks to Google directly from your device.
+
+## The desktop app
+
+Files you open are read and written where they are. Settings, layout and recent files are kept in fizzy's configuration folder on your computer. To check for updates and list plugins in the store, fizzy downloads release information from [UPDATE AND REGISTRY HOSTS — e.g. GitHub]. Those requests carry the usual network details, such as your IP address, and nothing about your work.
+
+## The web app
+
+fizzyed.it is served by [HOSTING PROVIDER], which may keep standard request logs (IP address, browser, time). Files you open are read inside your browser and are not uploaded. Settings are kept in your browser's local storage, and plugins you install in its cache; clearing this site's data removes both. If you let fizzy keep its data, the browser won't clear it on its own.
+
+## Google Drive
+
+The Google Drive plugin is optional. When you connect it, fizzy asks Google for access to the files and folders in your Drive, and uses that access only to do what you ask: list folders, open, edit, save, create, rename, delete and search files. It also reads your account's email address to name the drive in the file tree.
+
+Requests go straight from your device to Google. fizzy has no server that receives your Drive data, and we do not sell it, share it, use it for advertising, or use it to train AI models.
+
+On the desktop, a sign-in token is saved in fizzy's configuration folder on your computer, readable only by your user account, so the next launch can sign in without asking. On the web, the sign-in lasts at most an hour, is kept in memory only, and is never written to storage.
+
+To disconnect, disconnect Google Drive in fizzy, which also deletes the saved token. You can revoke access at any time at [myaccount.google.com/permissions](https://myaccount.google.com/permissions).
+
+fizzy's use and transfer to any other app of information received from Google APIs will adhere to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements.
+
+## Plugins
+
+Plugins from the store run inside fizzy with the same access fizzy has. Plugins built by others are covered by their authors' policies.
+
+## Changes and contact
+
+When this policy changes, the date above changes, and its history is public in [this site's repository](https://github.com/fizzyedit/website). Questions go to [CONTACT EMAIL].

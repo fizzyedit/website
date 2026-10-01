@@ -1,0 +1,17 @@
+.zine_version = "0.14.0",
+.site = .simple(.{
+    .title = "fizzy",
+    .host_url = "https://fizzyed.it",
+    .content_dir_path = "content",
+    .layouts_dir_path = "layouts",
+    .assets_dir_path = "assets",
+    .static_assets = [
+        "CNAME",
+        "robots.txt",
+        "sitemap.xml",
+        // Referenced from site.css, which Zine does not read for links.
+        "fonts",
+        // og:image and the favicon, named by full URL.
+        "img",
+    ],
+}),

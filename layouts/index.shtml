@@ -1,0 +1,114 @@
+<extend template="base.shtml">
+<title id="title" :text="$page.title"></title>
+<head id="head"></head>
+<main id="main">
+	<section class="s-hero">
+		<div class="wrap hero-grid">
+			<div class="hero-copy">
+				<div class="hero-text" :html="$page.contentSection('hero')"></div>
+				<div class="downloads" id="download">
+					<div class="dl-group" data-os="macos">
+						<button class="dl" type="button" aria-haspopup="true" aria-expanded="false">
+							<span class="os-name">macOS</span>
+							<span class="note">.pkg</span>
+						</button>
+						<div class="dl-options" role="menu">
+							<a role="menuitem" href="https://github.com/fizzyedit/fizzy/releases" data-file="fizzy_macos_arm64.pkg">
+								<span>Apple Silicon</span>
+								<span class="arch">arm64</span>
+							</a>
+							<a role="menuitem" href="https://github.com/fizzyedit/fizzy/releases" data-file="fizzy_macos_x86_64.pkg">
+								<span>Intel</span>
+								<span class="arch">x86_64</span>
+							</a>
+						</div>
+					</div>
+					<div class="dl-group" data-os="windows">
+						<button class="dl" type="button" aria-haspopup="true" aria-expanded="false">
+							<span class="os-name">Windows</span>
+							<span class="note">.exe</span>
+						</button>
+						<div class="dl-options" role="menu">
+							<a role="menuitem" href="https://github.com/fizzyedit/fizzy/releases" data-file="fizzy_windows_x86_64.exe">
+								<span>Intel / AMD</span>
+								<span class="arch">x86_64</span>
+							</a>
+							<a role="menuitem" href="https://github.com/fizzyedit/fizzy/releases" data-file="fizzy_windows_arm64.exe">
+								<span>ARM</span>
+								<span class="arch">arm64</span>
+							</a>
+						</div>
+					</div>
+					<div class="dl-group" data-os="linux">
+						<button class="dl" type="button" aria-haspopup="true" aria-expanded="false">
+							<span class="os-name">Linux</span>
+							<span class="note">.AppImage</span>
+						</button>
+						<div class="dl-options" role="menu">
+							<a role="menuitem" href="https://github.com/fizzyedit/fizzy/releases" data-file="fizzy_linux_x86_64.AppImage">
+								<span>Intel / AMD</span>
+								<span class="arch">x86_64</span>
+							</a>
+							<a role="menuitem" href="https://github.com/fizzyedit/fizzy/releases" data-file="fizzy_linux_arm64.AppImage">
+								<span>ARM</span>
+								<span class="arch">arm64</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<figure class="embed" data-src="/app/?open=/site.zip">
+				<div class="embed-frame">
+					<div class="embed-poster" aria-hidden="true">
+						<div class="mock-rail"><i></i><i></i><i></i></div>
+						<div class="mock-tree">
+							<b>FILES</b>
+							<i></i>
+							<i class="sel"></i>
+							<i></i>
+							<i></i>
+						</div>
+						<div class="mock-pane">
+							<span class="mock-tab">index.smd</span>
+							<i></i>
+							<i></i>
+							<i class="short"></i>
+							<i></i>
+							<i class="short"></i>
+						</div>
+						<div class="mock-pane">
+							<span class="mock-tab">preview</span>
+							<b class="mock-h"></b>
+							<i></i>
+							<i></i>
+							<i class="short"></i>
+						</div>
+					</div>
+					<button class="embed-run" type="button">Run fizzy here</button>
+					<a class="embed-out" href="/app/?open=/site.zip" target="_blank" hidden>Open in a full window ↗</a>
+				</div>
+				<figcaption :html="$page.contentSection('embed')"></figcaption>
+			</figure>
+		</div>
+	</section>
+
+	<section class="s-framework">
+		<div class="wrap" :html="$page.contentSection('framework')"></div>
+	</section>
+	<section class="s-plugins">
+		<div class="wrap" :html="$page.contentSection('plugins')"></div>
+	</section>
+	<section class="s-write">
+		<div class="wrap" :html="$page.contentSection('write')"></div>
+	</section>
+	<section class="s-web">
+		<div class="wrap" :html="$page.contentSection('web')"></div>
+	</section>
+	<section class="s-status">
+		<div class="wrap" :html="$page.contentSection('status')"></div>
+	</section>
+	<section class="s-this-site">
+		<div class="wrap" :html="$page.contentSection('this-site')"></div>
+	</section>
+</main>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title id="title"><super> — fizzy</title>
+		<meta name="description" content="$page.description">
+		<link rel="canonical" href="$site.host_url.addPath($page.link())">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="$site.host_url.addPath($page.link())">
+		<meta property="og:title" content="$page.title.suffix(' — fizzy')">
+		<meta property="og:description" content="$page.description">
+		<meta property="og:image" content="https://fizzyed.it/img/banner.png">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="theme-color" content="#22232a">
+		<link rel="icon" type="image/png" href="/img/icon.png">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@700;800&display=swap">
+		<link rel="stylesheet" href="$site.asset('site.css').link()">
+		<script src="$site.asset('site.js').link()" defer></script>
+		<super>
+	</head>
+	<body>
+		<header class="top">
+			<div class="wrap">
+				<a class="brand" href="/" aria-label="fizzy home">
+					<img src="/img/icon.png" alt="" width="28" height="28">
+					<span class="name">fizzy</span>
+				</a>
+				<nav aria-label="Main">
+					<a href="/#framework">Framework</a>
+					<a href="/#plugins">Plugins</a>
+					<a href="/#write">Write a plugin</a>
+					<a href="/#web">Web</a>
+					<a href="https://github.com/fizzyedit/fizzy">GitHub</a>
+				</nav>
+				<span class="ver" id="ver" hidden></span>
+				<a class="cta" href="/app/">Open the app</a>
+			</div>
+		</header>
+		<main id="main">
+			<super>
+		</main>
+		<footer class="bottom">
+			<div class="wrap">
+				<p class="about">
+					<strong>fizzy</strong>
+					is a framework for tools that feel alive. Open source under GPL-3.0, built with <a href="https://github.com/david-vanderson/dvui">DVUI</a>. © foxnne and contributors.
+				</p>
+				<div class="cols">
+					<div>
+						<h2>Project</h2>
+						<a href="https://github.com/fizzyedit/fizzy">GitHub</a>
+						<a href="https://github.com/fizzyedit/fizzy/releases">Releases</a>
+						<a href="https://github.com/fizzyedit/plugins">Plugin registry</a>
+					</div>
+					<div>
+						<h2>Learn</h2>
+						<a href="https://github.com/fizzyedit/fizzy/blob/main/docs/PLUGINS.md">Writing a plugin</a>
+						<a href="https://github.com/fizzyedit/fizzy/wiki">Wiki</a>
+						<a href="/app/?open=/site.zip">Edit this site in fizzy</a>
+					</div>
+					<div>
+						<h2>Community</h2>
+						<a href="https://github.com/fizzyedit/fizzy/issues">Issues</a>
+						<a href="https://github.com/fizzyedit/fizzy/blob/main/contributor.md">Contributing</a>
+						<a href="https://ko-fi.com/R5R4LL2PJ">Ko-fi</a>
+					</div>
+					<div>
+						<h2>Legal</h2>
+						<a href="$site.page('privacy').link()">Privacy policy</a>
+						<a href="$site.page('terms').link()">Terms of service</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
