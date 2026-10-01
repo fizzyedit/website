@@ -17,8 +17,8 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@700;800&display=swap">
-		<link rel="stylesheet" href="$site.asset('site.css').link()">
-		<script src="$site.asset('site.js').link()" defer></script>
+		<link rel="stylesheet" href="$site.asset('site.css').link().suffix('?v=', $build.generated.format('20060102150405'))">
+		<script src="$site.asset('site.js').link().suffix('?v=', $build.generated.format('20060102150405'))" defer></script>
 		<super>
 	</head>
 	<body>
