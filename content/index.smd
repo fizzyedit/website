@@ -1,0 +1,117 @@
+---
+.title = "Build tools that feel alive.",
+.description = "fizzy is an open-source framework in Zig for editors and polished apps: a near-empty host, a stable SDK, and plugins for everything else. Native on macOS, Linux and Windows, and live in your browser.",
+.date = .date("2026-10-01T00:00:00"),
+.layout = "index.shtml",
+---
+
+[]($section.id('hero'))
+
+###### Open source · Zig · native and web
+
+# Build tools that feel alive.
+
+fizzy is a framework for editors and polished apps: a near-empty host, a stable SDK, and plugins for everything else — tabs, splits, text, images, even a whole pixel-art editor. Native on macOS, Linux and Windows. Live in your browser.
+
+>[]($block.attrs('actions'))
+>[Open it in your browser](https://fizzyed.it/app/) [Write a plugin](#write)
+
+[]($section.id('embed'))
+
+This website's own markdown, open in fizzy. It's the real app: drag a tab, open a file.
+
+[]($section.id('framework'))
+
+###### The framework
+
+## A host that owns nothing. Plugins for everything else.
+
+The app is a window, a frame loop, a layout and a document model. Every feature you see — the file tree, the tabs, the text editor — is a plugin registered against the SDK. Plugins never import each other; they meet only there.
+
+- **Regions accept, surfaces offer.** A plugin's view carries keywords saying where it may go, and a region takes what matches. Drag a view somewhere else and the layout remembers.
+- **One source, two link modes.** The same plugin compiles into the app — on every target, the web included — or as a library the desktop app loads at runtime. Third-party plugins ship the second way.
+- **Copy a layout, don't configure one.** A layout is ordinary Zig, a couple of dozen lines. Use one of the shipped shapes as it is, or copy the closest into your app and change it.
+
+[]($section.id('plugins'))
+
+###### Plugins
+
+## Everything you see is a plugin.
+
+The ones that ship with fizzy are built exactly the way a third-party plugin is, so any of them can be your template.
+
+- **workbench** The file tree and the document panes. Other plugins open and manage files through it without importing it.
+- **text** Text and code editing, and the owner of any file nothing else claims.
+- **markdown** A live preview for markdown — including this page's.
+- **image** A viewer for PNG, JPG, GIF, BMP and TGA, with zoom and pan.
+- **archive** Opens a `.zip` as a folder. It's how the window above opened this site.
+- **drive** Google Drive as a folder, on the desktop and on the web. From the store.
+- **pixi** Pixel art and animation — where fizzy started, now a plugin in the store.
+
+Store plugins live in their own repositories. Tag a release and CI builds it for every desktop target and the web; the registry picks it up, and fizzy installs and updates it in place.
+
+>[]($block.attrs('actions'))
+>[Browse the registry](https://github.com/fizzyedit/plugins) [Release CI for your plugin](https://github.com/fizzyedit/plugin-build-action)
+
+[]($section.id('write'))
+
+###### Write a plugin
+
+## One function, one view.
+
+The smallest plugin registers itself and a surface keyworded for the sidebar. Copy it, rename it, `zig build install`, and turn it on in fizzy.
+
+```zig
+pub fn register(host: *sdk.Host) !void {
+    try host.registerPlugin(&plugin);
+    try host.registerSurface(.{
+        .id = "hello.greeting",
+        .owner = &plugin,
+        .title = "Hello",
+        .keywords = sdk.keywords.ide.sidebar,
+        .draw = draw,
+    });
+}
+```
+
+>[]($block.attrs('actions'))
+>[Read the plugin guide](https://github.com/fizzyedit/fizzy/blob/main/docs/PLUGINS.md) [Copy hello-plugin](https://github.com/fizzyedit/fizzy/tree/main/examples/hello-plugin)
+
+[]($section.id('web'))
+
+###### On the web
+
+## The same app, in a tab.
+
+The web build is fizzy compiled to WebAssembly. Nothing to install, and your files stay where they are.
+
+- **Plugins on demand.** Store plugins load beside the app as modules of their own, fetched only when you install one.
+- **Folders from anywhere.** Open files from your device, a `.zip` as a folder, or your Google Drive.
+- **The desktop app, minus the install.** The same tabs, splits and views, the same plugins.
+
+>[]($block.attrs('actions'))
+>[Open fizzy in your browser](https://fizzyed.it/app/)
+
+[]($section.id('status'))
+
+###### Where it stands
+
+## Pre-1.0, and moving fast.
+
+The SDK is versioned, and every plugin is checked against the app's shape when it loads: one built for a different version is turned away rather than crashing.
+
+- [x] A modular core: the app itself owns no features
+- [x] The plugin SDK and the plugin store
+- [x] The web build, plugins included
+- [x] Liquid glass on macOS, frosted glass everywhere
+
+[]($section.id('this-site'))
+
+###### This page
+
+## This page is markdown.
+
+Every word on fizzyed.it lives in [SuperMD](https://zine-ssg.io/docs/supermd/) files, built by [Zine](https://zine-ssg.io). Open them in fizzy and edit them like anything else.
+
+>[]($block.attrs('actions'))
+>[Open this site in fizzy](https://fizzyed.it/app/?open=/site.zip) [See the source](https://github.com/fizzyedit/website/tree/main/content)

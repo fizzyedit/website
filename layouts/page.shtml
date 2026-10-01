@@ -1,0 +1,8 @@
+<extend template="base.shtml">
+<title id="title" :text="$page.title"></title>
+<head id="head"></head>
+<main id="main">
+	<article class="doc">
+		<div class="wrap" :html="$page.content()"></div>
+	</article>
+</main>
