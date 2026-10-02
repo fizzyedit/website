@@ -58,10 +58,10 @@
 				</div>
 			</div>
 
-			<figure class="embed" data-src="/app/?storage=hero&amp;open=/site.zip&amp;show=index.smd" data-start="visible">
+			<figure class="embed" data-src="/app/?storage=hero&amp;persist=0&amp;open=/site.zip&amp;show=index.smd" data-start="visible">
 				<div class="embed-frame">
 					<button class="embed-run" type="button" hidden>Run fizzy here</button>
-					<a class="embed-out" href="/app/?storage=hero&amp;open=/site.zip&amp;show=index.smd" target="_blank" hidden>Open in a full window ↗</a>
+					<a class="embed-out" href="/app/?storage=hero&amp;persist=0&amp;open=/site.zip&amp;show=index.smd" target="_blank" hidden>Open in a full window ↗</a>
 				</div>
 				<figcaption :html="$page.contentSection('embed')"></figcaption>
 			</figure>
