@@ -185,7 +185,7 @@ pre [class^="punctuation"], pre .operator { color: var(--muted); }
 /* the live embed: the app's own frame, empty until it starts */
 .embed { margin: 0; }
 .embed-frame {
-  position: relative; height: min(88vh, 1000px); min-height: 520px; border-radius: 22px; overflow: hidden;
+  position: relative; height: min(66vh, 750px); min-height: 390px; border-radius: 22px; overflow: hidden;
   isolation: isolate;
   background: var(--raised); border: 1px solid var(--line);
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
@@ -241,7 +241,7 @@ footer h2 { font-family: var(--text); font-size: 12px; font-weight: 700; letter-
 
 @media (max-width: 1120px) { .ver { display: none; } }
 @media (max-width: 960px) {
-  .embed-frame { height: 80vh; min-height: 480px; }
+  .embed-frame { height: 60vh; min-height: 360px; }
   header.top nav { display: none; }
   .brand { margin-right: auto; }
   footer.bottom .wrap { grid-template-columns: minmax(0, 1fr); }
