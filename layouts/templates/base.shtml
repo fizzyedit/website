@@ -46,7 +46,7 @@
 			<div class="wrap">
 				<p class="about">
 					<strong>fizzy</strong>
-					is a framework for tools that feel alive. Open source under GPL-3.0, built with <a href="https://github.com/david-vanderson/dvui">DVUI</a>. © foxnne and contributors.
+					is a framework for tools that feel alive. Open source under MIT, free forever, built with <a href="https://github.com/david-vanderson/dvui">DVUI</a>. © foxnne and contributors.
 				</p>
 				<div class="cols">
 					<div>
