@@ -1,17 +1,17 @@
 ---
 .title = "Terms of service",
 .description = "The terms for using fizzyed.it and the fizzy web app.",
-.date = .date("2026-10-01T00:00:00"),
+.date = .date("2026-10-16T00:00:00"),
 .layout = "page.shtml",
 ---
 
 # Terms of service
 
->Last updated 10.1.2026.
+>Last updated 10.16.2026.
 
 ## What these cover
 
-fizzy's source code is licensed under the [GNU General Public License v3.0](https://github.com/fizzyedit/fizzy/blob/main/LICENSE), and that license alone governs copying, changing and distributing it. These terms cover the fizzyed.it website and the web app hosted there.
+fizzy's source code is licensed under the [MIT License](https://github.com/fizzyedit/fizzy/blob/main/LICENSE), and that license alone governs copying, changing and distributing it. What it promises is in [LICENSING.md](https://github.com/fizzyedit/fizzy/blob/main/LICENSING.md). These terms cover the fizzyed.it website and the web app hosted there.
 
 ## Your work is yours
 
@@ -19,7 +19,7 @@ fizzy claims no rights to anything you make or open with it. The [privacy policy
 
 ## No warranty
 
-fizzy is pre-1.0 and provided as is, without warranty of any kind, as the GPL states. Keep backups of work that matters. To the extent the law allows, the authors are not liable for loss arising from using fizzy or this website.
+fizzy is pre-1.0 and provided as is, without warranty of any kind, as the MIT License states. Keep backups of work that matters. To the extent the law allows, the authors are not liable for loss arising from using fizzy or this website.
 
 ## Plugins and Google
 
@@ -27,7 +27,7 @@ Plugins in the store are made and maintained by their authors, under their own l
 
 ## Using the web app
 
-Don't use the hosted app to break the law, to attack the site or other people, or in ways that keep others from using it. The hosted app may change or be unavailable at any time; the code stays yours to build and run under the GPL.
+Don't use the hosted app to break the law, to attack the site or other people, or in ways that keep others from using it. The hosted app may change or be unavailable at any time; the code stays yours to build and run under the MIT License.
 
 ## Changes and contact
 
