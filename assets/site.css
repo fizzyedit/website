@@ -210,11 +210,6 @@ pre [class^="punctuation"], pre .operator { color: var(--muted); }
   border-color: transparent transparent transparent var(--mint);
 }
 .embed-run:hover { transform: translate(-50%, -50%) scale(1.04); }
-.embed-out {
-  position: absolute; right: 12px; bottom: 12px; z-index: 2; padding: 6px 12px; border-radius: 999px;
-  background: var(--glass-fill); border: 1px solid var(--glass-rim); font-size: 13px; font-weight: 700; color: var(--ink);
-  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-}
 .embed figcaption p { margin: 14px 4px 0; font-size: 15px; color: var(--muted); max-width: none; }
 .embed.running .embed-run { display: none; }
 

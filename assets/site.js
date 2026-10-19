@@ -64,8 +64,6 @@ fetch("https://api.github.com/repos/fizzyedit/fizzy/releases?per_page=50")
     frame.allow = "clipboard-read; clipboard-write; fullscreen";
     figure.querySelector(".embed-frame").append(frame);
     figure.classList.add("running");
-    const out = figure.querySelector(".embed-out");
-    if (out) out.hidden = false;
   }
   const onView = "IntersectionObserver" in window && !saveData
     ? new IntersectionObserver((entries) => entries.forEach((e) => {
